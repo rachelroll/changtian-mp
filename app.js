@@ -10,8 +10,11 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+         var token = WXAPI.login(res.code);
+          wx.setStorageSync('token', token);
       }
-    })
+    });
+
     // 获取用户信息
     wx.getSetting({
       success: res => {

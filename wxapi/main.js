@@ -152,6 +152,11 @@ module.exports = {
       id
     })
   },
+    orderInfo: (token) => {
+        return request('/orders', true, 'get', {
+            token
+        })
+    },
   goodsPrice: (data) => {
     return request('/shop/goods/price', true, 'post', data)
   },

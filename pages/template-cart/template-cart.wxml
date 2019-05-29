@@ -7,7 +7,6 @@
             去逛逛
     </view>
 </template>
-
 <template name="cart-goods-list">
     <view class="list-top">
         <view class="label">昌田农贸</view>
@@ -16,7 +15,7 @@
     </view>
     <view class="goodsList">
         <view class="a-gooods" wx:for="{{list}}"  wx:key="{{index}}" >
-            <view class="a-goods-conts {{item.active? 'active':''}}" bindtap="selectTap" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}"    style="{{item.left}}">
+            <view class="a-goods-conts {{item.active? 'active':''}}" bindtap="selectTap" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}">
                 <view class="goods-info">
                     <view class="img-box">
                         <image src="{{item.pic}}" class="img"/>
