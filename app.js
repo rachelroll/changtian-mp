@@ -1,4 +1,6 @@
 //app.js
+const WXAPI = require('./wxapi/main');
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -9,9 +11,13 @@ App({
     // 登录
     wx.login({
       success: res => {
+          console.log(res.code);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-         var token = WXAPI.login(res.code);
-          wx.setStorageSync('token', token);
+          WXAPI.login(res.code).then(function (res) {
+              let token = res.data.token;
+              console.log(token);
+              wx.setStorageSync('token', token);
+          });
       }
     });
 

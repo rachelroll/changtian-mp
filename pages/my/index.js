@@ -5,16 +5,20 @@ Page({
 	data: {
     freeze:0,
     score_sign_continuous:0,
-        orders: ''
+    orders: {}
   },
 	onLoad() {
 	},
   onShow() {
     let that = this;
     let token = wx.getStorageSync('token');
-      const orderRes = WXAPI.orderInfo(token);
-      that.setData({
-          orders: orderRes
+      WXAPI.orderInfo(token).then(function(res) {
+          console.log(res.data);
+              that.setData({
+                  orders: res.data
+              });
+              console.log(8989);
+              console.log(that.data.orders);
       });
   },
 });
