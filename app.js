@@ -14,6 +14,7 @@ App({
           console.log(res.code);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
           WXAPI.login(res.code).then(function (res) {
+              console.log(res.data.token);
               let token = res.data.token;
               console.log(token);
               wx.setStorageSync('token', token);

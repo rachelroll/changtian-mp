@@ -161,7 +161,7 @@ Page({
             "mask": true
         })
         WXAPI.goods({
-            categoryId: categoryId,
+            id: categoryId,
             nameLike: that.data.inputVal,
             page: this.data.curPage,
             pageSize: this.data.pageSize

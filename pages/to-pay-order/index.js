@@ -68,52 +68,81 @@ Page({
 
 
   createOrder: function (e) {
-      console.log(8989);
-      console.log(this.data.goodsJsonStr)
-    var that = this;
-    var loginToken = wx.getStorageSync('token'); // 用户登录 token
-      console.log(loginToken);
-      var username = ""; // 客户名字
-      var contact = ""; // 联系方式
-      var address = ""; // 地址
-      var comments = ""; // 备注信息
-    if (e) {
-        username = e.detail.value.username; // 客户名字
-        contact = e.detail.value.contact; // 联系方式
-        address = e.detail.value.address; // 地址
-        comments = e.detail.value.remark; // 备注信息
-    }
+      if (e.detail.value.username.length == 0) {
+          wx.showToast({
+              title: '请填写名字!',
+              icon: 'loading',
+              duration: 1500
+          })
+          setTimeout(function () {
+              wx.hideToast()
+          }, 2000)
+      } else if (e.detail.value.contact.length == 0) {
+          wx.showToast({
+              title: '请填写联系方式!',
+              icon: 'loading',
+              duration: 1500
+          })
+          setTimeout(function () {
+              wx.hideToast()
+          }, 2000)
+      } else if (e.detail.value.address.length == 0) {
+          wx.showToast({
+              title: '请填写地址!',
+              icon: 'loading',
+              duration: 1500
+          })
+          setTimeout(function () {
+              wx.hideToast()
+          }, 2000)
+      } else {
+          console.log(8989);
+          console.log(this.data.goodsJsonStr)
+          var that = this;
+          var loginToken = wx.getStorageSync('token'); // 用户登录 token
+          console.log(loginToken);
+          var username = ""; // 客户名字
+          var contact = ""; // 联系方式
+          var address = ""; // 地址
+          var comments = ""; // 备注信息
+          if (e) {
+              username = e.detail.value.username; // 客户名字
+              contact = e.detail.value.contact; // 联系方式
+              address = e.detail.value.address; // 地址
+              comments = e.detail.value.remark; // 备注信息
+          }
 
-    let postData = {
-        token: loginToken,
-        goodsJsonStr: that.data.goodsJsonStr,
-        username: username,
-        contact: contact,
-        address: address,
-        comments: comments,
-    };
-      console.log(postData);
-    WXAPI.orderCreate(postData).then(function (res) {
-      if (res.code != 0) {
-        wx.showModal({
-          title: '错误',
-          content: '你好',
-          showCancel: false
-        })
-        return;
+          let postData = {
+              token: loginToken,
+              goodsJsonStr: that.data.goodsJsonStr,
+              username: username,
+              contact: contact,
+              address: address,
+              comments: comments,
+          };
+          console.log(postData);
+          WXAPI.orderCreate(postData).then(function (res) {
+              if (res.code != 0) {
+                  wx.showModal({
+                      title: '错误',
+                      content: '你好',
+                      showCancel: false
+                  })
+                  return;
+              }
+
+              if (e && "buyNow" != that.data.orderType) {
+                  // 清空购物车数据
+                  wx.removeStorageSync('shopCarInfo');
+              }
+
+              wx.showModal({
+                  title: '提交订单成功',
+                  content: res.msg,
+                  showCancel: true
+              });
+          })
       }
-
-      if (e && "buyNow" != that.data.orderType) {
-        // 清空购物车数据
-        wx.removeStorageSync('shopCarInfo');
-      }
-
-        wx.showModal({
-            title: '提交订单成功',
-            content: res.msg,
-            showCancel: true
-        });
-    })
   },
 
   processYunfei: function () {

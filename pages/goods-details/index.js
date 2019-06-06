@@ -61,9 +61,8 @@ Page({
     const that = this;
     const goodsDetailRes = await WXAPI.goodsDetail(goodsId)
 
-    console.log(2222222);
-      console.log(goodsDetailRes.data.basicInfo.pic);
     if (goodsDetailRes.code == 0) {
+        console.log(goodsDetailRes);
       var selectSizeTemp = "";
       that.data.goodsDetail = goodsDetailRes.data;
       let _data = {
@@ -74,7 +73,6 @@ Page({
       }
 
       that.setData(_data);
-      // WxParse.wxParse('article', 'html', goodsDetailRes.data.content, that, 5);
     }
   },
   goShopCar: function() {

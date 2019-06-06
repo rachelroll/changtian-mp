@@ -21,23 +21,22 @@
   </view>
   <view class="goods-des-info">
     <view class="label-title">商品介绍</view>
-    <view class="goods-text">
-      <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
-      非常好吃
+    <view class="goods-text" style="margin-left: 20rpx">
+        {{ goodsDetail.basicInfo.intro }}
     </view>
   </view>
 
     <view class="goods-des-info">
         <view class="label-title">发货地址</view>
-        <view class="goods-text">
-            宁夏
+        <view class="goods-text" style="margin-left: 20rpx">
+            {{ goodsDetail.basicInfo.shipping_place }}
         </view>
     </view>
 
     <view class="goods-des-info">
         <view class="label-title">发货期限</view>
-        <view class="goods-text">
-            下单后两天内
+        <view class="goods-text" style="margin-left: 20rpx">
+            {{ goodsDetail.basicInfo.shipping_date }}
         </view>
     </view>
 
