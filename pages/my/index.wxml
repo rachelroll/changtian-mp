@@ -18,7 +18,10 @@
                     </view>
                     <view class="text-box">
                         <view class="goods-title">{{item.data.name}}</view>
-                        <view class="goods-price">¥ {{item.data.price}}</view>
+                        <view style="display: flex; flex-flow: row nowrap;justify-content:space-between; margin-right: 80rpx">
+                            <view class="goods-price">¥ {{item.data.price}}</view>
+                            <view class="goods-price" style="color: darkgrey">x {{item.data.quantity}}</view>
+                        </view>
                     </view>
                 </view>
             </view>
