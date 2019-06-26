@@ -20,23 +20,52 @@
             </view>
         </view>
      </view>
-         <view class="peisong-way">
-             <view class="row-box">
-                 <view class="row-label">姓名</view>
-                 <view class="right-text">
-                     <input name="username" type="text" class="liuyan" placeholder="请输入姓名" />
+<!--         <view class="peisong-way">-->
+<!--             <view class="row-box">-->
+<!--                 <view class="row-label">姓名</view>-->
+<!--                 <view class="right-text">-->
+<!--                     <input name="username" type="text" class="liuyan" placeholder="请输入姓名" />-->
+<!--                 </view>-->
+<!--             </view>-->
+<!--             <view class="row-box">-->
+<!--                 <view class="row-label">联系方式</view>-->
+<!--                 <view class="right-text">-->
+<!--                     <input name="contact" type="text" class="liuyan" placeholder="请输入联系方式" />-->
+<!--                 </view>-->
+<!--             </view>-->
+<!--             <view class="row-box">-->
+<!--                 <view class="row-label">邮寄地址</view>-->
+<!--                 <view class="right-text">-->
+<!--                     <input name="address" type="text" class="liuyan" placeholder="请输入邮寄地址" />-->
+<!--                 </view>-->
+<!--             </view>-->
+<!--             <view class="row-box">-->
+<!--                 <view class="row-label">备注</view>-->
+<!--                 <view class="right-text">-->
+<!--                     <input name="remark" type="text" class="liuyan" placeholder="如需备注请输入" />-->
+<!--                 </view>-->
+<!--             </view>-->
+<!--         </view>-->
+
+     <view class="peisong-way">
+<!--             <view class="row-box" wx:if="{{isNeedLogistics > 0}}">-->
+<!--                 <view class="row-label">配送方式</view>-->
+<!--                 <radio-group bindchange="radioChange">-->
+<!--                     <label class="radio">-->
+<!--                         <radio value="kd" checked="{{peisongType == 'kd'}}" /> 快递-->
+<!--                     </label>-->
+<!--                     <label class="radio" wx:if='{{allowSelfCollection == "1"}}'>-->
+<!--                         <radio value="zq" checked="{{peisongType == 'zq'}}" /> 到店自取-->
+<!--                     </label>-->
+<!--                 </radio-group>-->
+<!--             </view>-->
+             <view class="address-box">
+                 <view class="add-address" hidden="{{curAddressData}}">
+                     <view class="title" bindtap="addAddress">新增收货地址</view>
                  </view>
-             </view>
-             <view class="row-box">
-                 <view class="row-label">联系方式</view>
-                 <view class="right-text">
-                     <input name="contact" type="text" class="liuyan" placeholder="请输入联系方式" />
-                 </view>
-             </view>
-             <view class="row-box">
-                 <view class="row-label">邮寄地址</view>
-                 <view class="right-text">
-                     <input name="address" type="text" class="liuyan" placeholder="请输入邮寄地址" />
+                 <view class="show-address" hidden="{{!curAddressData}}" bindtap="selectAddress">
+                     <view class="name-tel">{{curAddressData.linkMan}}  {{curAddressData.mobile}}</view>
+                     <view class="addr-text">{{curAddressData.address}}</view>
                  </view>
              </view>
              <view class="row-box">
@@ -47,10 +76,24 @@
              </view>
          </view>
 
+         <view class="goods-info">
+             <view class="row-box">
+                 <view class="row-label">商品金额</view>
+                 <view class="right-text">¥ {{allGoodsPrice}}</view>
+             </view>
+             <view class="row-box" >
+                 <view class="row-label">运费</view>
+                 <view class="right-text">+ ¥ {{yunPrice}}</view>
+             </view>
+<!--             <view class="row-box" wx:if="{{!hasNoCoupons}}">-->
+<!--                 <view class="row-label">优惠券</view>-->
+<!--                 <view class="right-text">- ¥ {{youhuijine}}</view>-->
+<!--             </view>-->
+         </view>
      <view class="jiesuan-box">
-<!--        <view class="left-price">-->
-<!--            <view class="total">合计：¥ {{allGoodsAndYunPrice - youhuijine}} + {{totalScoreToPay}} 积分</view>-->
-<!--        </view>-->
+        <view class="left-price">
+            <view class="total">合计：¥ {{allGoodsAndYunPrice}}</view>
+        </view>
         <button class="to-pay-btn" formType="submit">提交订单</button>
     </view>
     </form>

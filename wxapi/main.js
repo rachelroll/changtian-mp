@@ -1,6 +1,6 @@
 // 小程序开发api接口工具包，https://github.com/gooking/wxapi
 const CONFIG = require('./config.js')
-const API_BASE_URL = 'https://changtian-api.oeaudio.com';
+const API_BASE_URL = 'http://127.0.0.1:8000';
 
 
 const request = (url, needSubDomain, method, data) => {
