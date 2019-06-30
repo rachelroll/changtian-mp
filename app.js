@@ -12,6 +12,7 @@ App({
     wx.login({
       success: res => {
           console.log(res.code);
+          // return false;
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
           WXAPI.login(res.code).then(function (res) {
               console.log(res.data.token);

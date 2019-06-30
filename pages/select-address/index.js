@@ -1,66 +1,54 @@
-// pages/select-address/index.js
+const WXAPI = require('../../wxapi/main')
+const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    addressList: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  selectTap: function(e) {
+    var id = e.currentTarget.dataset.id;
+    WXAPI.updateAddress({
+      token: wx.getStorageSync('token'),
+      id: id,
+      isDefault: 'true'
+    }).then(function(res) {
+      wx.navigateBack({})
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  addAddess: function() {
+    wx.navigateTo({
+      url: "/pages/address-add/index"
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  editAddess: function(e) {
+    wx.navigateTo({
+      url: "/pages/address-add/index?id=" + e.currentTarget.dataset.id
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  onLoad: function() {
+    console.log('onLoad')
+
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onShow: function() {
+    this.initShippingAddress();
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  initShippingAddress: function() {
+    var that = this;
+    WXAPI.queryAddress(wx.getStorageSync('token')).then(function(res) {
+      // if (res.code == 0) {
+        that.setData({
+          addressList: res.data
+        });
+      // } else if (res.code == 700) {
+      //   that.setData({
+      //     addressList: null
+      //   });
+      // }
+    })
   }
+
 })

@@ -2,9 +2,8 @@
 const CONFIG = require('./config.js')
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
-
 const request = (url, needSubDomain, method, data) => {
-  let _url = API_BASE_URL + (needSubDomain ? '/' + CONFIG.subDomain : '') + url
+  let _url = API_BASE_URL + (needSubDomain ? '/' + CONFIG.subDomain : '') + url;
   return new Promise((resolve, reject) => {
     wx.request({
       url: _url,
@@ -291,12 +290,53 @@ module.exports = {
     })
   },
   province: () => {
-    return request('/common/region/v2/province', false, 'get')
+      return new Promise((resolve, reject) => {
+          wx.request({
+              url: 'https://api.it120.cc/common/region/v2/province',
+              method: 'get',
+              header: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              success(request) {
+                  console.log('aaa', request.data)
+                  resolve(request.data)
+              },
+              fail(error) {
+                  reject(error)
+              },
+              complete(aaa) {
+                  // 加载完成
+              }
+          })
+      })
+      // request('https://api.it120.cc/common/region/v2/province', false, 'get')
   },
   nextRegion: (pid) => {
-    return request('/common/region/v2/child', false, 'get', {
-      pid
-    })
+      return new Promise((resolve, reject) => {
+          wx.request({
+              url: 'https://api.it120.cc/common/region/v2/child',
+              method: 'get',
+              data: {
+                  pid: pid,
+              },
+              header: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              success(request) {
+                  console.log(request.data)
+                  resolve(request.data)
+              },
+              fail(error) {
+                  reject(error)
+              },
+              complete(aaa) {
+                  // 加载完成
+              }
+          })
+      })
+    // return request('/common/region/v2/child', false, 'get', {
+    //   pid
+    // })
   },
   cashLogs: (data) => {
     return request('/user/cashLog', true, 'post', data)

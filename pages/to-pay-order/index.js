@@ -257,6 +257,7 @@ Page({
       console.log(wx.getStorageSync('token'));
       WXAPI.defaultAddress(wx.getStorageSync('token')).then(function (res) {
           if (res.code == 0) {
+              console.log('地址信息', res.data);
               that.setData({
                   curAddressData: res.data
               });
@@ -296,7 +297,8 @@ Page({
     console.log(goodsJsonStr);
     that.setData({
       isNeedLogistics: isNeedLogistics,
-      goodsJsonStr: goodsJsonStr
+      goodsJsonStr: goodsJsonStr,
+        allGoodsPrice: allGoodsPrice,
     });
 
     console.log(99999)
