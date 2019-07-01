@@ -353,7 +353,7 @@ Page({
   buliduBuyNowInfo: function(shoptype) {
     var shopCarMap = {};
     shopCarMap.goodsId = this.data.goodsDetail.basicInfo.id;
-    shopCarMap.pic = this.data.goodsDetail.basicInfo.pic;
+    shopCarMap.pic = this.data.goodsDetail.basicInfo.pic[0];
     shopCarMap.name = this.data.goodsDetail.basicInfo.name;
     // shopCarMap.label=this.data.goodsDetail.basicInfo.id; 规格尺寸
     shopCarMap.propertyChildIds = this.data.propertyChildIds;
