@@ -9,7 +9,8 @@ Page({
   },
   statusTap: function(e) {
     const curType = e.currentTarget.dataset.index;
-    this.data.currentType = curType
+      console.log('currentType', curType);
+    this.data.currentType = curType;
     this.setData({
       currentType: curType
     });
@@ -42,50 +43,66 @@ Page({
     const that = this;
     const orderId = e.currentTarget.dataset.id;
     let money = e.currentTarget.dataset.money;
-    const needScore = e.currentTarget.dataset.score;
-    WXAPI.userAmount(wx.getStorageSync('token')).then(function(res) {
-      if (res.code == 0) {
-        // 增加提示框
-        if (res.data.score < needScore) {
-          wx.showToast({
-            title: '您的积分不足，无法支付',
-            icon: 'none'
-          })
-          return;
-        }
-        let _msg = '订单金额: ' + money +' 元'
-        if (res.data.balance > 0) {
-          _msg += ',可用余额为 ' + res.data.balance +' 元'
-          if (money - res.data.balance > 0) {
-            _msg += ',仍需微信支付 ' + (money - res.data.balance) + ' 元'
-          }          
-        }
-        if (needScore > 0) {
-          _msg += ',并扣除 ' + money + ' 积分'
-        }
-        money = money - res.data.balance
-        wx.showModal({
+    // const needScore = e.currentTarget.dataset.score;
+    // WXAPI.userAmount(wx.getStorageSync('token')).then(function(res) {
+    //   if (res.code == 0) {
+    //     // 增加提示框
+    //     if (res.data.score < needScore) {
+    //       wx.showToast({
+    //         title: '您的积分不足，无法支付',
+    //         icon: 'none'
+    //       })
+    //       return;
+    //     }
+    //     let _msg = '订单金额: ' + money +' 元'
+    //     if (res.data.balance > 0) {
+    //       _msg += ',可用余额为 ' + res.data.balance +' 元'
+    //       if (money - res.data.balance > 0) {
+    //         _msg += ',仍需微信支付 ' + (money - res.data.balance) + ' 元'
+    //       }
+    //     }
+    //     if (needScore > 0) {
+    //       _msg += ',并扣除 ' + money + ' 积分'
+    //     }
+    //     money = money - res.data.balance
+    //     wx.showModal({
+    //       title: '请确认支付',
+    //       content: _msg,
+    //       confirmText: "确认支付",
+    //       cancelText: "取消支付",
+    //       success: function (res) {
+    //         console.log(res);
+    //         if (res.confirm) {
+    //           that._toPayTap(orderId, money)
+    //         } else {
+    //           console.log('用户点击取消支付')
+    //         }
+    //       }
+    //     });
+    //   } else {
+    //     wx.showModal({
+    //       title: '错误',
+    //       content: '无法获取用户资金信息',
+    //       showCancel: false
+    //     })
+    //   }
+    // })
+
+      let _msg = '订单金额: ' + money +' 元'
+      wx.showModal({
           title: '请确认支付',
           content: _msg,
           confirmText: "确认支付",
           cancelText: "取消支付",
           success: function (res) {
-            console.log(res);
-            if (res.confirm) {
-              that._toPayTap(orderId, money)
-            } else {
-              console.log('用户点击取消支付')
-            }
+              console.log(res);
+              if (res.confirm) {
+                  that._toPayTap(orderId, money)
+              } else {
+                  console.log('用户点击取消支付')
+              }
           }
-        });
-      } else {
-        wx.showModal({
-          title: '错误',
-          content: '无法获取用户资金信息',
-          showCancel: false
-        })
-      }
-    })
+      });
   },
   _toPayTap: function (orderId, money){
     const _this = this
@@ -99,6 +116,7 @@ Page({
     }
   },
   onLoad: function(options) {
+      console.log(options);
     if (options && options.type) {
       this.setData({
         currentType: options.type
@@ -158,9 +176,11 @@ Page({
       if (res.code == 0) {
         that.setData({
           orderList: res.data.orderList,
-          logisticsMap: res.data.logisticsMap,
+          // logisticsMap: res.data.logisticsMap,
           goodsMap: res.data.goodsMap
         });
+
+          console.log('orderlist', that.data.orderList);
       } else {
         that.setData({
           orderList: null,
@@ -186,4 +206,4 @@ Page({
     // 页面上拉触底事件的处理函数
 
   }
-})
+});

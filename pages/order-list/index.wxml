@@ -5,7 +5,7 @@
             <view class="{{tabClass[index]}}"></view>
         </view>
     </view>
-    <view class="no-order" hidden="{{orderList ? true : false}}">
+    <view class="no-order" hidden="{{orderList? true : false}}">
         <image src="/images/no-order.png" class="no-order-img"></image>
         <view class="text">暂无订单</view>
     </view>
@@ -21,7 +21,7 @@
                    <view wx:if="{{item.remark && item.remark != ''}}">备注： {{item.remark}}</view>
                 </view>
             </view>
-            <view >
+            <view>
                 <scroll-view class="goods-img-container" scroll-x="true">
                     <view class="img-box" wx:for-items="{{goodsMap[item.id]}}" wx:key="{{index}}">
                         <image src="{{item.pic}}" class="goods-img"></image>
@@ -30,9 +30,9 @@
             </view>
             <view class="price-box">
                 <view class="total-price" wx:if="{{item.score <= 0}}">合计：¥ {{item.amountReal}}</view>
-                <view class="total-price" wx:if="{{item.score > 0}}">合计：¥ {{item.amountReal}} + {{item.score}} 积分</view>
+<!--                <view class="total-price" wx:if="{{item.score > 0}}">合计：¥ {{item.amountReal}} + {{item.score}} 积分</view>-->
                 <view class="btn cancel-btn" hidden="{{item.status==0? false : true}}" bindtap="cancelOrderTap"  data-id="{{item.id}}">取消订单</view>
-                <view class="btn topay-btn" hidden="{{item.status==0? false : true}}" bindtap="toPayTap" data-id="{{item.id}}" data-money="{{item.amountReal}}" data-score="{{item.score}}">马上付款</view>
+                <view class="btn topay-btn" hidden="{{item.status==0? false : true}}" bindtap="toPayTap" data-id="{{item.id}}" data-money="{{item.amount}}" data-score="{{item.score}}">马上付款</view>
             </view>
         </view>
     </view>

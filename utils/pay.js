@@ -14,29 +14,30 @@ function wxpay(type, money, orderId, redirectUrl, data) {
       id: orderId
     };
   }
-  if (type === 'paybill') {
-    remark = "优惠买单 ：" + data.money;
-    nextAction = {
-      type: 4,
-      uid: wx.getStorageSync('uid'),
-      money: data.money
-    };
-  }
+  // if (type === 'paybill') {
+  //   remark = "优惠买单 ：" + data.money;
+  //   nextAction = {
+  //     type: 4,
+  //     uid: wx.getStorageSync('uid'),
+  //     money: data.money
+  //   };
+  // }
   WXAPI.wxpay({
     token: wx.getStorageSync('token'),
     money: money,
     remark: remark,
     payName: remark,
-    nextAction: JSON.stringify(nextAction)
+    id: orderId
+    // nextAction: JSON.stringify(nextAction)
   }).then(function (res) {
     if (res.code == 0) {
       // 发起支付
       wx.requestPayment({
-        timeStamp: res.data.timeStamp,
+        timeStamp: res.data.timestamp,
         nonceStr: res.data.nonceStr,
-        package: 'prepay_id=' + res.data.prepayId,
+        package: res.data.package,
         signType: 'MD5',
-        paySign: res.data.sign,
+        paySign: res.data.paySign,
         fail: function (aaa) {
           wx.showToast({
             title: '支付失败:' + aaa
