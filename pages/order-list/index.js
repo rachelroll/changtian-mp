@@ -3,9 +3,9 @@ const app = getApp()
 const WXAPI = require('../../wxapi/main')
 Page({
   data: {
-    statusType: ["待付款", "待发货", "待收货", "待评价", "已完成"],
+    statusType: ["待付款", "待发货", "待收货", "已完成"],
     currentType: 0,
-    tabClass: ["", "", "", "", ""]
+    tabClass: ["", "", "", ""]
   },
   statusTap: function(e) {
     const curType = e.currentTarget.dataset.index;
@@ -147,16 +147,16 @@ Page({
         } else {
           tabClass[2] = ""
         }
-        if (res.data.count_id_no_reputation > 0) {
-          tabClass[3] = "red-dot"
-        } else {
-          tabClass[3] = ""
-        }
-        if (res.data.count_id_success > 0) {
-          //tabClass[4] = "red-dot"
-        } else {
-          //tabClass[4] = ""
-        }
+        // if (res.data.count_id_no_reputation > 0) {
+        //   tabClass[3] = "red-dot"
+        // } else {
+        //   tabClass[3] = ""
+        // }
+        // if (res.data.count_id_success > 0) {
+        //   tabClass[4] = "red-dot"
+        // } else {
+        //   tabClass[4] = ""
+        // }
 
         that.setData({
           tabClass: tabClass,
