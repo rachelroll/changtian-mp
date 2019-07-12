@@ -27,14 +27,21 @@
   </view>
 
     <view class="goods-des-info">
-        <view class="label-title">发货地址</view>
+        <view class="label-title">规格与包装</view>
+        <view class="goods-text" style="margin-left: 20rpx">
+            {{ goodsDetail.basicInfo.size }}
+        </view>
+    </view>
+
+    <view class="goods-des-info">
+<!--        <view class="label-title">发货地址</view>-->
         <view class="goods-text" style="margin-left: 20rpx">
             {{ goodsDetail.basicInfo.shipping_place }}
         </view>
     </view>
 
     <view class="goods-des-info">
-        <view class="label-title">发货期限</view>
+<!--        <view class="label-title">发货期限</view>-->
         <view class="goods-text" style="margin-left: 20rpx">
             {{ goodsDetail.basicInfo.shipping_date }}
         </view>
