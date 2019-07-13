@@ -185,7 +185,7 @@ Page({
                 address: address,
                 mobile: mobile,
                 code: code,
-                isDefault: 'true'
+                isDefault: 0
             })
         } else {
             apiResult = WXAPI.addAddress({
@@ -197,7 +197,7 @@ Page({
                 address: address,
                 mobile: mobile,
                 code: code,
-                isDefault: true
+                isDefault: 1
             })
         }
         apiResult.then(function (res) {

@@ -34,8 +34,9 @@
                   <image class="icon" src="/images/order-details/icon-wuliu.png"></image>
               </view>
               <view class="right-text">
-                  <view class="order-number">快递单号：{{orderDetail.logistics.trackingNumber}}</view>
-                  <view class="wuliu-text" hidden="{{orderDetail.logistics.trackingNumber}}? true: false">暂无物流信息</view>
+                  <view class="order-number">快递公司：{{orderDetail.logistics.express_name}}</view>
+                  <view class="order-number">快递单号：{{orderDetail.logistics.express_number}}</view>
+                  <view class="wuliu-text" hidden="{{orderDetail.logistics.express_number}}? true: false">暂无物流信息</view>
               </view>
           </view>
           <view class="address-sec">

@@ -29,7 +29,13 @@
     <view class="goods-des-info">
         <view class="label-title">规格与包装</view>
         <view class="goods-text" style="margin-left: 20rpx">
-            {{ goodsDetail.basicInfo.size }}
+            <block  wx:if="{{ goodsDetail.basicInfo.size }}" >
+                {{ goodsDetail.basicInfo.size }}
+            </block>
+
+            <block wx:else>
+                暂无
+            </block>
         </view>
     </view>
 

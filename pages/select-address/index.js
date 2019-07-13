@@ -6,11 +6,13 @@ Page({
   },
 
   selectTap: function(e) {
+      console.log(e);
     var id = e.currentTarget.dataset.id;
+      console.log(id);
     WXAPI.updateAddress({
       token: wx.getStorageSync('token'),
       id: id,
-      isDefault: 'true'
+      isDefault: 1
     }).then(function(res) {
       wx.navigateBack({})
     })
@@ -39,6 +41,7 @@ Page({
   initShippingAddress: function() {
     var that = this;
     WXAPI.queryAddress(wx.getStorageSync('token')).then(function(res) {
+        // console.log('µÿ÷∑¡–±Ì:'.res.data);
       // if (res.code == 0) {
         that.setData({
           addressList: res.data

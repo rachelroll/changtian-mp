@@ -306,11 +306,49 @@ module.exports = {
         return request('/user/withDraw/list', true, 'post', data)
     },
     province: () => {
-        return request('/common/region/v2/province', false, 'get')
+        // return request('/common/region/v2/province', false, 'get')
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: 'https://api.it120.cc/common/region/v2/province',
+                method: 'get',
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success(request) {
+                    console.log(request.data)
+                    resolve(request.data)
+                },
+                fail(error) {
+                    reject(error)
+                },
+                complete(aaa) {
+                    // 加载完成
+                }
+            })
+        })
     },
     nextRegion: (pid) => {
-        return request('/common/region/v2/child', false, 'get', {
-            pid
+        // return request('/common/region/v2/child', false, 'get', {pid});
+
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: 'https://api.it120.cc/common/region/v2/child',
+                method: 'get',
+                data: {pid},
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success(request) {
+                    console.log(request.data)
+                    resolve(request.data)
+                },
+                fail(error) {
+                    reject(error)
+                },
+                complete(aaa) {
+                    // 加载完成
+                }
+            })
         })
     },
     cashLogs: (data) => {
