@@ -41,7 +41,7 @@ Page({
   initShippingAddress: function() {
     var that = this;
     WXAPI.queryAddress(wx.getStorageSync('token')).then(function(res) {
-        // console.log('µØÖ·ÁĞ±í:'.res.data);
+        // console.log('åœ°å€åˆ—è¡¨:'.res.data);
       // if (res.code == 0) {
         that.setData({
           addressList: res.data
