@@ -69,51 +69,7 @@ Page({
     return aaa;
   },
 
-
   createOrder: function (e) {
-      // if (e.detail.value.username.length == 0) {
-      //     wx.showToast({
-      //         title: '请填写名字!',
-      //         icon: 'loading',
-      //         duration: 1500
-      //     })
-      //     setTimeout(function () {
-      //         wx.hideToast()
-      //     }, 2000)
-      // } else if (e.detail.value.contact.length == 0) {
-      //     wx.showToast({
-      //         title: '请填写联系方式!',
-      //         icon: 'loading',
-      //         duration: 1500
-      //     })
-      //     setTimeout(function () {
-      //         wx.hideToast()
-      //     }, 2000)
-      // } else if (e.detail.value.address.length == 0) {
-      //     wx.showToast({
-      //         title: '请填写地址!',
-      //         icon: 'loading',
-      //         duration: 1500
-      //     })
-      //     setTimeout(function () {
-      //         wx.hideToast()
-      //     }, 2000)
-      // } else {
-      //     console.log(8989);
-      //     console.log(this.data.goodsJsonStr)
-      //     var that = this;
-      //     var loginToken = wx.getStorageSync('token'); // 用户登录 token
-      //     console.log(loginToken);
-      //     var username = ""; // 客户名字
-      //     var contact = ""; // 联系方式
-      //     var address = ""; // 地址
-      //     var comments = ""; // 备注信息
-      //     if (e) {
-      //         username = e.detail.value.username; // 客户名字
-      //         contact = e.detail.value.contact; // 联系方式
-      //         address = e.detail.value.address; // 地址
-      //         comments = e.detail.value.remark; // 备注信息
-      //     }
       var that = this;
       var loginToken = wx.getStorageSync('token') // 用户登录 token
       var remark = ""; // 备注信息
@@ -125,10 +81,6 @@ Page({
           goodsJsonStr: that.data.goodsJsonStr,
           comments: remark,
           peisongType: that.data.peisongType
-          // username: username,
-          // contact: contact,
-          // address: address,
-          // comments: comments,
       };
 
       if (!that.data.curAddressData) {
@@ -149,10 +101,6 @@ Page({
       postData.linkMan = that.data.curAddressData.linkMan;
       postData.mobile = that.data.curAddressData.mobile;
       postData.code = that.data.curAddressData.code;
-      // if (!e) {
-      //     postData.calculate = "true";
-      // }
-
       console.log(postData);
       WXAPI.orderCreate(postData).then(function (res) {
           if (res.code != 0) {

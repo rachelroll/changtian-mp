@@ -57,13 +57,13 @@ Page({
             url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
         })
     },
-    tapBanner: function(e) {
-        if (e.currentTarget.dataset.id != 0) {
-            wx.navigateTo({
-                url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
-            })
-        }
-    },
+    // tapBanner: function(e) {
+    //     if (e.currentTarget.dataset.id != 0) {
+    //         wx.navigateTo({
+    //             url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+    //         })
+    //     }
+    // },
     bindTypeTap: function(e) {
         this.setData({
             selectCurrent: e.index

@@ -9,12 +9,15 @@
       </block>
     </swiper>
     <view class="dots">
-      <block wx:for="{{goodsDetail.basicInfo.pics}}" wx:key="unique">
+      <block wx:for="{{goodsDetail.basicInfo.pics}}" wx:key="unique">'
         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
       </block>
     </view>
   </view>
-
+    <view class="goods-info">
+        <view class="goods-title">{{goodsDetail.basicInfo.name}}</view>
+        <view class="goods-price" style="padding-left:35rpx;">¥ {{selectSizePrice}}</view>
+    </view>
   <view class='space'></view>
   <view wx:if="{{hasMoreSelect}}" class="row-arrow" bindtap="bindGuiGeTap">
     {{selectSize}}
