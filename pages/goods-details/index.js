@@ -86,10 +86,17 @@ Page({
         WXAPI.videoDetail(videoId).then(function(res) {
             if (res.code == 0) {
                 that.setData({
-                    videoMp4Src: res.data.fdMp4
+                    videoMp4Src: res.data.fdMp4,
                 });
+                var media = [];
+                media.push(that.data.videoMp4Src);
+                media = media.concat(that.data.goodsDetail.basicInfo.pic);
 
-                console.log(that.data.videoMp4Src);
+                that.setData({
+                    media: media,
+                })
+                console.log('lsljslj');
+                console.log(that.data.media);
             }
         })
     },
