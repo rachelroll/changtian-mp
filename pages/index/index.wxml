@@ -1,5 +1,21 @@
 <script src="../goods-details/index.js"></script>
 <view class="container">
+    <!--    banner-->
+    <view class="swiper-container">
+        <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
+            <block wx:for="{{banners}}" wx:key="id">
+                <swiper-item>
+                    <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" width="750rpx" height="562.5rpx" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="dots">
+            <block wx:for="{{banners}}" wx:key="unique">
+                <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+            </block>
+        </view>
+    </view>
+    <!--    banner 结束-->
     <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
@@ -17,17 +33,7 @@
             </view>
             <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
         </view>
-
-<!--        <view wx:if="{{noticeList}}" class="notice">-->
-<!--            <image class="notice_icon" src="/images/notice.png"></image>-->
-<!--            <swiper wx:if="{{noticeList}}" class="notice_swiper" vertical="true" autoplay="true" circular="true" interval="3000">-->
-<!--                <navigator wx:for-items="{{noticeList.dataList}}" wx:key="id" url="/pages/notice/show?id={{item.id}}" open-type="navigate">-->
-<!--                    <swiper-item>-->
-<!--                        <view class="notice_itemr">{{item.title}}</view>-->
-<!--                    </swiper-item>-->
-<!--                </navigator>-->
-<!--            </swiper>-->
-<!--        </view>-->
+        <!--        分类-->
         <scroll-view scroll-x>
             <view class="category-box" style='width:{{category_box_width}}rpx;'>
                 <view class="category-list" wx:for="{{categories}}" wx:key="*this">
@@ -38,21 +44,9 @@
                 </view>
             </view>
         </scroll-view>
+        <!--        分类结束-->
     </view>
-    <view class="swiper-container">
-        <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
-            <block wx:for="{{banners}}" wx:key="id">
-                <swiper-item>
-                    <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" width="750rpx" height="562.5rpx" />
-                </swiper-item>
-            </block>
-        </swiper>
-        <view class="dots">
-            <block wx:for="{{banners}}" wx:key="unique">
-                <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-            </block>
-        </view>
-    </view>
+
     <view class="weui-loadmore weui-loadmore_line" wx:if="{{goodsRecommend.length > 0 && activeCategoryId == 0}}">
         <view class="weui-loadmore__tips weui-loadmore__tips_in-line">爆品推荐</view>
     </view>

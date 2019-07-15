@@ -65,6 +65,11 @@ Page({
         console.log(goodsDetailRes);
       var selectSizeTemp = "";
       that.data.goodsDetail = goodsDetailRes.data;
+
+      if (goodsDetailRes.data.basicInfo.videoId) {
+          that.getVideoSrc(goodsDetailRes.data.basicInfo.videoId);
+      }
+
       let _data = {
         goodsDetail: goodsDetailRes.data,
         selectSizePrice: goodsDetailRes.data.basicInfo.minprice,
@@ -75,6 +80,20 @@ Page({
       that.setData(_data);
     }
   },
+
+    getVideoSrc: function(videoId) {
+        var that = this;
+        WXAPI.videoDetail(videoId).then(function(res) {
+            if (res.code == 0) {
+                that.setData({
+                    videoMp4Src: res.data.fdMp4
+                });
+
+                console.log(that.data.videoMp4Src);
+            }
+        })
+    },
+
   goShopCar: function() {
     wx.reLaunch({
       url: "/pages/shop-cart/index"
