@@ -1,0 +1,6 @@
+<view class="container">
+    <video wx:if="{{ video }}" src="{{ video }}" autoplay="false" loop="true" style='width:100%; height: 748rpx'></video>
+
+    <rich-text class="content" nodes="{{originalInfo}}" bindtap="tap"></rich-text>
+
+</view>

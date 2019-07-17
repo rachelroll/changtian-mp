@@ -8,7 +8,6 @@ Page({
         inputVal: "", // 搜索框内容
         category_box_width: 750, //分类总宽度
         goodsRecommend: [], // 推荐商品
-
         indicatorDots: true,
         autoplay: true,
         interval: 3000,
@@ -57,18 +56,22 @@ Page({
             url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
         })
     },
-    // tapBanner: function(e) {
-    //     if (e.currentTarget.dataset.id != 0) {
-    //         wx.navigateTo({
-    //             url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
-    //         })
-    //     }
-    // },
+
     bindTypeTap: function(e) {
         this.setData({
             selectCurrent: e.index
         })
     },
+
+    // 溯源页面
+    toOriginInfo: function (e) {
+        console.log('点击溯源页的携带参数');
+        console.log(e)
+        wx.navigateTo({
+            url: "/pages/origin-info/index?id=" + e.currentTarget.dataset.id
+        })
+    },
+
     onLoad: function(e) {
         wx.showShareMenu({
             withShareTicket: true
@@ -93,14 +96,15 @@ Page({
             console.log('banner');
             console.log(res.data)
             if (res.code == 700) {
-                wx.showModal({
-                    title: '提示',
-                    content: '请在后台添加 banner 轮播图片，自定义类型填写 new',
-                    showCancel: false
-                })
+                // wx.showModal({
+                //     title: '提示',
+                //     content: '请在后台添加 banner 轮播图片，自定义类型填写 new',
+                //     showCancel: false
+                // })
             } else {
                 that.setData({
-                    banners: res.data
+                    banners: res.data,
+                    slogan: res.slogan
                 });
             }
         }).catch(function(e) {
@@ -125,10 +129,13 @@ Page({
             const _n = Math.ceil(categories.length / 2)
             that.setData({
                 categories: categories,
-                category_box_width: 150 * _n,
+                category_box_width: 300 * _n,
                 activeCategoryId: 0,
                 curPage: 1
             });
+
+            console.log(11111111)
+            console.log(that.data.category_box_width)
             that.getGoodsList(0);
         });
         WXAPI.goods({

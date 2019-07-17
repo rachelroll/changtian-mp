@@ -5,9 +5,10 @@ const regeneratorRuntime = require('../../utils/runtime')
 
 Page({
   data: {
-    autoplay: true,
+    autoplay: false,
     interval: 3000,
     duration: 1000,
+    circular:true,
     goodsDetail: {},
     swiperCurrent: 0,
     hasMoreSelect: false,

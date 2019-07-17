@@ -20,8 +20,8 @@
     overflow: hidden;
 }
 .category-imgbox{
-    width:60rpx;
-    height:60rpx;
+    width:120rpx;
+    height:120rpx;
 }
 .category-title{
     font-size: 24rpx;
@@ -102,7 +102,7 @@ swiper-item image {
     height: 339rpx;
 }
 .goods-box .goods-title{
-    width: 280rpx;
+    width: 200rpx;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -112,13 +112,35 @@ swiper-item image {
     margin-left: 24rpx;
 }
 .goods-box .goods-price{
-    width: 280rpx;
+    width: 200rpx;
     overflow: hidden;
     font-size: 24rpx;
     padding: 24rpx 0;
     color:#e64340;
     margin-left: 24rpx;
 }
+
+.origin-info{
+    font-size: 24rpx;
+    color:#e64340;
+}
+
+.round {
+    border-radius: 5000rpx;
+}
+
+.goods-box .origin-box{
+    border: 4rpx solid #e64340;
+    border-radius: 8rpx;
+    width: 152rpx;
+    height: 74rpx;
+    overflow: hidden;
+    font-size: 24rpx;
+    padding: 10rpx;
+    margin: 16rpx;
+    text-align: center;
+}
+
 .no-more-goods{
     text-align: center;
     font-size: 24rpx;

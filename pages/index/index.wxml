@@ -5,7 +5,7 @@
         <swiper class="swiper_box" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperchange">
             <block wx:for="{{banners}}" wx:key="id">
                 <swiper-item>
-                    <image bindtap="tapBanner" data-id="{{item.businessId}}" src="{{item.picUrl}}" class="slide-image" width="750rpx" height="562.5rpx" />
+                    <image bindtap="tapBanner" data-id="{{item.id}}" src="{{item.picUrl}}" class="slide-image" width="750rpx" height="562.5rpx" />
                 </swiper-item>
             </block>
         </swiper>
@@ -16,6 +16,9 @@
         </view>
     </view>
     <!--    banner 结束-->
+    <view class=" weui-loadmore_line" style="margin-top:1.4em;" wx:if="{{ slogan }}">
+        <view class="weui-loadmore__tips_in-line" style="font-size:30rpx">{{ slogan }}</view>
+    </view>
     <view class="page__bd">
         <view class="weui-search-bar">
             <view class="weui-search-bar__form">
@@ -38,7 +41,7 @@
             <view class="category-box" style='width:{{category_box_width}}rpx;'>
                 <view class="category-list" wx:for="{{categories}}" wx:key="*this">
                     <view class="category-column {{activeCategoryId == item.id ? 'type-item-on' : ''}}" bindtap="tabClick" id="{{item.id}}">
-                        <image class="category-imgbox" src="{{item.icon}}"></image>
+                        <image class="category-imgbox round" src="{{item.icon}}"></image>
                         <view class="category-title">{{item.name}}</view>
                     </view>
                 </view>
@@ -112,14 +115,20 @@
         <view class="weui-loadmore__tips weui-loadmore__tips_in-line">商品列表</view>
     </view>
     <view class="goods-container">
-        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.data.basicInfo.id}}">
-            <view class="img-box">
-                <image src="{{item.data.basicInfo.cover}}" class="image" mode="aspectFill" lazy-load="true" />
+        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}">
+            <view bindtap="toDetailsTap" data-id="{{item.data.basicInfo.id}}">
+                <view class="img-box">
+                    <image src="{{item.data.basicInfo.cover}}" class="image" mode="aspectFill" lazy-load="true" />
+                </view>
             </view>
-            <view class="goods-title">{{item.data.basicInfo.name}}</view>
             <view style='display:flex;'>
-                <view class="goods-price">¥ {{item.data.basicInfo.minprice}}</view>
-                <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+                <view>
+                    <view class="goods-title">{{item.data.basicInfo.name}}</view>
+                    <view class="goods-price">¥ {{item.data.basicInfo.minprice}}</view>
+                </view>
+                <view class="origin-box" bindtap="toOriginInfo" data-id="{{ item.data.basicInfo.id }}" wx:if="{{ item.data.basicInfo.is_source == 1 }}" >
+                    <view class="origin-info">溯源展示</view>
+                </view>
             </view>
         </view>
     </view>

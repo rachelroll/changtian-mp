@@ -1,0 +1,14 @@
+.container{
+  min-height: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
+  background-color: #F2f2f2;
+  padding-bottom: 100rpx;
+}
+
+.container content {
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    height:748rpx;
+}

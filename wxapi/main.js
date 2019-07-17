@@ -458,5 +458,5 @@ module.exports = {
     },
     depositBackApply: (token, id) => {
         return request('/deposit/back/apply', true, 'post', { token, id })
-    }
+    },
 }

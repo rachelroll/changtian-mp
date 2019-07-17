@@ -21,7 +21,8 @@
     "pages/fx/apply",
     "pages/fx/apply-status",
     "pages/fx/members",
-    "pages/fx/commisionLog"
+    "pages/fx/commisionLog",
+    "pages/origin-info/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

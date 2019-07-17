@@ -22,6 +22,8 @@ function wxpay(type, money, orderId, redirectUrl, data) {
   //     money: data.money
   //   };
   // }
+
+    console.log(wx.getStorageSync('token'));
   WXAPI.wxpay({
     token: wx.getStorageSync('token'),
     money: money,
@@ -30,6 +32,7 @@ function wxpay(type, money, orderId, redirectUrl, data) {
     id: orderId
     // nextAction: JSON.stringify(nextAction)
   }).then(function (res) {
+      console.log(res);
     if (res.code == 0) {
       // 发起支付
       wx.requestPayment({
